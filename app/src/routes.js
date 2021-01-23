@@ -6,11 +6,11 @@ import auth from './app/middlewares/auth';
 
 const routes = new Router();
 
-routes.use(auth);
-
 routes.get('/', (req, res) => {
-  return res.send(req.user);
+  return res.status(200).send("Todo App backend is running");
 });
+
+routes.use(auth);
 
 routes.get('/todo', ToDoController.index);
 routes.get('/todo/:id', ToDoController.show);

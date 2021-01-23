@@ -10,7 +10,6 @@ export default async (req, res, next) => {
       return next();
     }
   } catch (error) {
-    console.error('Error while verifying Firebase ID token:', error);
     return res.status(401).send('Unauthorized');
   }
 };

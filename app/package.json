@@ -11,7 +11,7 @@
     "build": "babel ./ --out-dir ../functions --presets=es2015 --copy-files --ignore ./node_modules",
     "postbuild": "cd ../functions && yarn",
     "predeploy": "yarn build",
-    "deploy": "firebase deploy --only functions"
+    "deploy": "cd .. && firebase deploy --only functions"
   },
   "engines": {
     "node": "10"
