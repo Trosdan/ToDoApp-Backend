@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Firebase Function deploy
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: Download dependency
+        run: | 
+          cd app
+          yarn install
+          
+      - uses: "finnp/create-file-action@master"
+        env:
+          FILE_NAME: "app/serviceAccountKey.json"
+          FILE_DATA: ${{ secrets.FIREBASE_SERVICE_AUTH_ACCOUTN }}
+
+      - name: Build application
+        run: |
+          cd app
+          yarn build
+          
+      - name: Firebase hosting deploy
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
