@@ -26,7 +26,7 @@ jobs:
           yarn install
           
       - name: Create a secret json
-      - uses: "jsdaniell/create-json@1.1.2"
+        uses: "jsdaniell/create-json@1.1.2"
         env:
           name: "serviceAccountKey.json"
           json: ${{ secrets.FIREBASE_SERVICE_AUTH_ACCOUTN }}
