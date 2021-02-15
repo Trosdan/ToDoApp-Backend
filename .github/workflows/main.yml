@@ -27,7 +27,7 @@ jobs:
           
       - uses: "finnp/create-file-action@master"
         env:
-          FILE_NAME: "dir/app/serviceAccountKey.json"
+          FILE_NAME: "app/serviceAccountKey.json"
           FILE_DATA: ${{ secrets.FIREBASE_SERVICE_AUTH_ACCOUTN }}
 
       - name: Build application
