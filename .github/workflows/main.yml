@@ -26,11 +26,10 @@ jobs:
           yarn install
           
       - name: Create a secret json
-        uses: "jsdaniell/create-json@1.1.2"
+        uses: "finnp/create-file-action@master"
         env:
-          name: "serviceAccountKey.json"
-          json: ${{ secrets.FIREBASE_SERVICE_AUTH_ACCOUTN }}
-          dir: 'app/'
+          FILE_NAME: "app/serviceAccountKey.json"
+          FILE_DATA: ${{ secrets.FIREBASE_SERVICE_AUTH_ACCOUTN }}
 
       - name: Build application
         run: |
